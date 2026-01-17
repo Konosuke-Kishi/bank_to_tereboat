@@ -3,8 +3,9 @@
 # ======================================================
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from config_edit import CONFIG
+from config import CONFIG
 import time, datetime, logging, os
+import chromedriver_autoinstaller
 
 # ======================================================
 # 設定ファイル（config.py）の読み込み
@@ -40,13 +41,11 @@ def delete_auto_payment_log():
 if(USE_BROWSER == "Firefox"):
   executable_path = "/usr/local/bin/geckodriver"
   options = webdriver.FirefoxOptions()
-  options.add_argument('--headless') 
   options.add_argument('--disable-popup-blocking')
   service = webdriver.firefox.service.Service(executable_path=executable_path)
 else:
-  executable_path = "/usr/local/bin/chromedriver"
+  executable_path = chromedriver_autoinstaller.install()
   options = webdriver.ChromeOptions()
-  options.add_argument('--headless') 
   options.add_argument('--disable-popup-blocking')
   service = webdriver.chrome.service.Service(executable_path=executable_path)
 
@@ -116,7 +115,7 @@ def auto_payment():
   
   if len(newhandles) > 1:
     driver.switch_to.window(newhandles[1])
-    logging.info("NEOBANK：ウィンドウ切替成功")
+    logging.info("TEREBOAT：ウィンドウ切替成功")
     time.sleep(3)
     # 入金開始ボタン押下
     try:
@@ -129,14 +128,15 @@ def auto_payment():
     logging.warning("TEREBOAT：ウィンドウが開かれていません")
     raise Exception("TEREBOAT ウィンドウが開かれていません")
   driver.find_element(By.XPATH, "//*[@id=\"charge\"]").click()
+  time.sleep(3)
   # TEREBOATの入金額を入力
   input_money = driver.find_element(by=By.ID, value="chargeInstructAmt")
   input_money.send_keys(TEREBOAT_MONEY_AMT)
   logging.info("TEREBOAT：金額入力")
   # TEREBOATの取引パスワード入力
-  input_bet_passwd = driver.find_element(by=By.ID, value="chargetBetPassword")
+  input_bet_passwd = driver.find_element(by=By.ID, value="chargeBetPassword")
   input_bet_passwd.send_keys(TEREBOAT_BET_PWD)
-  logging.info("TEREBOAT：取引パスワード入力")
+  logging.info("TEREBOAT：投票用パスワード入力")
   # TEREBOATの入金指示ボタン押下
   driver.find_element(by=By.ID, value="executeCharge").click()
   logging.info("TEREBOAT：入金指示確認ボタン押下")
@@ -144,10 +144,10 @@ def auto_payment():
   # TEREBOATの入金指示確認ボタン押下
   driver.find_element(by=By.ID, value="ok").click()
   logging.info("TEREBOAT：入金指示完了")
-  time.sleep(5)
+  time.sleep(3)
   driver.find_element(by=By.LINK_TEXT, value="閉じる").click()
-  # TEREABOATのログアウト処理
-  time.sleep(5)
+  # TEREBOATのログアウト処理
+  time.sleep(3)
   driver.find_element(by=By.LINK_TEXT, value="ログアウト").click()
-  time.sleep(5)
+  time.sleep(3)
   driver.find_element(by=By.ID, value="ok").click()

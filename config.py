@@ -9,5 +9,8 @@ CONFIG = {
     'tereboatPin': '<PIN>',
     'tereboatLoginPassword': '<ログインパスワード>',
     'tereboatAmountOfMoney': 1, #入金金額
-    'tereboatBetPassword': '<取引パスワード>'
+    'tereboatBetPassword': '<投票用パスワード>',
+    # LINE Messaging API情報（任意）
+    'lineUserId': '<LINE Messaging API設定で払い出したユーザID>',
+    'lineChannelToken': '<LINE Messaging API設定で払い出したチャネルアクセストークン（長期）>'
 }
