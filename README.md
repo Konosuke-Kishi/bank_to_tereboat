@@ -7,7 +7,7 @@ TEREBOATに毎月入金するのを自動化しました。<br>
 ### 1. ソースコードをクローン
 
 ```
-git clone https://github.com/Konosuke-Kishi/au_bank_tereboat.git
+git clone https://github.com/Konosuke-Kishi/bank_to_tereboat.git
 ```
 
 ### 2. 事前準備
