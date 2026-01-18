@@ -1,8 +1,7 @@
 # ======================================================
 # ライブラリ
 # ======================================================
-import logging
-import os
+import logging, os
 from main import delete_auto_payment_log, auto_payment
 from notify import line_notify
 from selenium.common.exceptions import WebDriverException, NoSuchElementException, TimeoutException
