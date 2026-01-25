@@ -82,13 +82,13 @@ def auto_payment():
   driver.get("https://ib.mbrace.or.jp/")
   logging.info("WebDriver：サイトアクセス成功")
   time.sleep(5)
-  # TEREBOATのユーザ名入力
-  userid = driver.find_element(by=By.NAME, value="memberNo")
-  userid.send_keys(TEREBOAT_MEMBER_NO)
-  logging.info("TEREBOAT：ユーザ名入力")
+  # TEREBOATの加入者番号入力
+  member_no = driver.find_element(by=By.NAME, value="memberNo")
+  member_no.send_keys(TEREBOAT_MEMBER_NO)
+  logging.info("TEREBOAT：加入者番号入力")
   # TEREBOATのPIN入力
-  userid = driver.find_element(by=By.NAME, value="pin")
-  userid.send_keys(TEREBOAT_PIN)
+  pin = driver.find_element(by=By.NAME, value="pin")
+  pin.send_keys(TEREBOAT_PIN)
   logging.info("TEREBOAT：PIN入力")
   # TEREBOATのログインパスワード入力
   password = driver.find_element(by=By.NAME, value="authPassword")
