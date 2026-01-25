@@ -116,18 +116,16 @@ def auto_payment():
   if len(newhandles) > 1:
     driver.switch_to.window(newhandles[1])
     logging.info("TEREBOAT：ウィンドウ切替成功")
-    time.sleep(3)
-    # 入金開始ボタン押下
-    try:
-      driver.find_element(By.XPATH, "//*[@id=\"gnavi01\"]/span").click()
-      logging.info("TEREBOAT：入金指示開始")
-    except Exception as e:
-      logging.warning(f"TEREBOAT：入金指示開始スキップ - {e}")
-    time.sleep(3)
   else:
     logging.warning("TEREBOAT：ウィンドウが開かれていません")
     raise Exception("TEREBOAT ウィンドウが開かれていません")
-  driver.find_element(By.XPATH, "//*[@id=\"charge\"]").click()
+  # メニューボタン押下
+  driver.find_element(By.ID, "gnavi01").click()
+  logging.info("TEREBOAT：メニューボタン押下")
+  time.sleep(3)
+  # 入金開始ボタン押下
+  driver.find_element(By.ID, "charge").click()
+  logging.info("TEREBOAT：入金指示開始")
   time.sleep(3)
   # TEREBOATの入金額を入力
   input_money = driver.find_element(by=By.ID, value="chargeInstructAmt")
@@ -145,9 +143,7 @@ def auto_payment():
   driver.find_element(by=By.ID, value="ok").click()
   logging.info("TEREBOAT：入金指示完了")
   time.sleep(3)
-  driver.find_element(by=By.LINK_TEXT, value="閉じる").click()
-  # TEREBOATのログアウト処理
-  time.sleep(3)
-  driver.find_element(by=By.LINK_TEXT, value="ログアウト").click()
-  time.sleep(3)
-  driver.find_element(by=By.ID, value="ok").click()
+  # 処理終了
+  logging.info("WebDriver：ブラウザを閉じる")
+  driver.quit()
+  logging.info("==========処理終了==========")
