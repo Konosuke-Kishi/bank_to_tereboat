@@ -1,8 +1,9 @@
 # ======================================================
 # ライブラリ
 # ======================================================
-from config import CONFIG
+import os
 import requests
+from config_edit import CONFIG
 # ======================================================
 # LINE通知処理
 # ======================================================
@@ -10,6 +11,7 @@ def line_notify(message):
     # ConfigからLINE Messaging API情報読み込み
     LINE_USER_ID = CONFIG['lineUserId']
     LINE_C_TOKEN = CONFIG['lineChannelToken']
+    LOG_DIR = os.path.join(os.path.dirname(__file__), 'logs')
     # ヘッダー部分の内容を設定
     headers = {
         'Authorization': f'Bearer {LINE_C_TOKEN}',
@@ -26,7 +28,9 @@ def line_notify(message):
     # メッセージ送信
     response = requests.post(url, headers=headers, json=data)
     # ログ出力設定
-    with open("line_notify.log","w") as o:
+    log_path = os.path.join(LOG_DIR, "line_notify.log")
+    os.makedirs(LOG_DIR, exist_ok=True)
+    with open(log_path, "w") as o:
         # ステータスを確認
         if response.status_code == 200:
             print(f"下記メッセージが正常に送信されました\n\"{title}:{message}\"",file=o)

@@ -2,7 +2,7 @@
 # ライブラリ
 # ======================================================
 import logging, os
-from main import delete_auto_payment_log, auto_payment
+from main import auto_payment
 from notify import line_notify
 from selenium.common.exceptions import WebDriverException, NoSuchElementException, TimeoutException
 
@@ -24,8 +24,6 @@ logger.addHandler(file_handler)
 # ======================================================
 if __name__ == '__main__':
     logger.info('cron job started')
-    # 月初ならログ削除
-    delete_auto_payment_log()
     try:
       # 定額自動入金のメイン処理を実行
       auto_payment()

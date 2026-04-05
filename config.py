@@ -3,9 +3,11 @@
 # ======================================================
 CONFIG = {
     # 使用するブラウザの種類
-    'useBrowser': 'Chrome', # Firefox or Chrome
+    'useBrowser': 'Chrome', # "Chrome" or "Firefox"
+    # ヘッドレスブラウザを使用するかどうか
+    'useHeadlessBrowser': False, #True or False
     # TEREBOAT情報（必須）
-    'tereboatMemberNo': '<加入者番号>', 
+    'tereboatMemberNumber': '<加入者番号>', 
     'tereboatPin': '<PIN>',
     'tereboatLoginPassword': '<ログインパスワード>',
     'tereboatAmountOfMoney': 1, #入金金額
