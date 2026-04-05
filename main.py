@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time, chromedriver_autoinstaller, geckodriver_autoinstaller
-from config_edit import CONFIG
+from config import CONFIG
 
 # ======================================================
 # 設定ファイルの読み込み
