@@ -22,7 +22,7 @@ TEREBOAT_MEMBER_NO = CONFIG['tereboatMemberNumber']
 TEREBOAT_LOGIN_PWD = CONFIG['tereboatLoginPassword']
 TEREBOAT_MONEY_AMT = CONFIG['tereboatAmountOfMoney']
 # 待機時間
-ELEMENT_WAIT_TIME = 20
+ELEMENT_WAIT_TIME = CONFIG['elementWaitTime']
 
 # ==============================================================
 # TODO: TimedRotatingFileHandlerを使用してログローテーションを実装する
@@ -124,3 +124,6 @@ def auto_payment():
   close_button.click()
   # 処理終了
   driver.quit()
+
+if __name__ == "__main__":
+    auto_payment()

@@ -5,7 +5,9 @@ CONFIG = {
     # 使用するブラウザの種類
     'useBrowser': 'Chrome', # "Chrome" or "Firefox"
     # ヘッドレスブラウザを使用するかどうか
-    'useHeadlessBrowser': False, #True or False
+    'useHeadlessBrowser': False, # True or False
+    # ページ要素が見つかるまでの待機時間（秒）
+    'elementWaitTime': 30,
     # TEREBOAT情報（必須）
     'tereboatMemberNumber': '<加入者番号>', 
     'tereboatPin': '<PIN>',
